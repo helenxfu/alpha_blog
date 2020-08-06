@@ -7,7 +7,17 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @article.description %>
+  <%= simple_format(@article.description) %>
+</p>
+
+<p>
+  <strong>Created:</strong>
+  <%= time_ago_in_words(@article.created_at) %>
+</p>
+
+<p>
+  <strong>Updated:</strong>
+  <%= time_ago_in_words(@article.updated_at) %>
 </p>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |

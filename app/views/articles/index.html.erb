@@ -1,3 +1,5 @@
+<% provide(:title, "Articles") %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Articles</h1>
@@ -7,6 +9,8 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
+      <th>Created</th>
+      <th>Updated</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +20,8 @@
       <tr>
         <td><%= article.title %></td>
         <td><%= article.description %></td>
+        <td><%= time_ago_in_words(article.created_at) %></td>
+        <td><%= time_ago_in_words(article.updated_at) %></td>
         <td><%= link_to 'Show', article %></td>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>

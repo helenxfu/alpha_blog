@@ -2,7 +2,9 @@ require 'test_helper'
 
 class ArticlesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @article = articles(:one)
+    # Is the set up called every time? ???
+    @article = articles(:one) 
+    # ??? what is one? 
   end
 
   test "should get index" do
@@ -17,6 +19,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create article" do
     assert_difference('Article.count') do
+      @article.title = "123456"
+      @article.description = "12345678"
       post articles_url, params: { article: { description: @article.description, title: @article.title } }
     end
 
@@ -34,6 +38,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update article" do
+    @article.title = "123456"
+    @article.description = "12345678"
     patch article_url(@article), params: { article: { description: @article.description, title: @article.title } }
     assert_redirected_to article_url(@article)
   end
