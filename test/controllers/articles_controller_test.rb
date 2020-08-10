@@ -2,9 +2,7 @@ require 'test_helper'
 
 class ArticlesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    # Is the set up called every time? ???
     @article = articles(:one) 
-    # ??? what is one? 
   end
 
   test "should get index" do

@@ -3,20 +3,13 @@
   <head>
     <title><%= yield(:title) %> | Rails Tutorial: Alpha Blog</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <%= @root %>
     <%= render 'layouts/navigation' %>
-    <%# why does this need to go into layout ??? %>
-    <%= !!yield(:title) ? "yes" : "no" %> 
-    <%= !yield(:not_true) ? "yes" : "no" %> 
-    <%= :title %>
-    <%# ??? want to try conditional but always yields true for :title. provide() pass variable(symbol) to base template? %>
-    <%# Tried with :not_true. %>
-    <%# <%= render 'form', article: @article %>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

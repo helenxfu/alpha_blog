@@ -4,7 +4,12 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
+    @root = "AlphaBlog Articles"
     @articles = Article.all
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render :index }
+    end
   end
 
   # GET /articles/1
@@ -28,7 +33,6 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        # ??? what is this html and json? 
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
@@ -36,11 +40,6 @@ class ArticlesController < ApplicationController
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
-    # if @article.save
-    #   redirect_to @article, notice: 'Article was successfully created.'
-    # else
-    #   render :new
-    # end
   end
 
   # PATCH/PUT /articles/1
