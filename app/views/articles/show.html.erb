@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<div>
+  <div><%= gravatar_for(@article.user) %></div>
   <strong>Author:</strong>
-  <%= @article.user.username if @article.user %>
-</p>
+  <% if @article.user %><%= link_to @article.user.username, user_path(@article.user) %><% end %>
+</div>
 
 <p>
   <strong>Title:</strong>

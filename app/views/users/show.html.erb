@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= gravatar_for @user, size: 100 %>
+
 <p>
   <strong>Username:</strong>
   <%= @user.username %>
@@ -12,8 +14,11 @@
 
 <p>
   <strong>Password:</strong>
-  <%= @user.password %>
+  <%= link_to 'Edit profile', edit_user_path(@user) %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<h3>Articles created by <%= @user.username %></h3>
+<%= "created #{pluralize(@user.articles.count, "article")}" %>
+<%= render 'articles/article', articles: @user.articles %>
+
 <%= link_to 'Back', users_path %>

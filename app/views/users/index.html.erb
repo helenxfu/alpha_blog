@@ -7,7 +7,8 @@
     <tr>
       <th>Username</th>
       <th>Email</th>
-      <th>Password</th>
+      <th>Articles</th>
+      <th>Joined</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,13 +18,12 @@
       <tr>
         <td><%= user.username %></td>
         <td><%= user.email %></td>
-        <td><%= user.password %></td>
+        <td><%= user.articles.count %></td>
+        <td><%= time_ago_in_words(user.created_at) %> ago</td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete Account', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New User', new_user_path %>

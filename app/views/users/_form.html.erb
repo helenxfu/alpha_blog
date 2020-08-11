@@ -13,20 +13,20 @@
 
   <div class="field">
     <%= form.label :username %>
-    <%= form.text_field :username, id: :user_username %>
+    <%= form.text_field :username, id: :user_username, placeholder: "username here" %>
   </div>
 
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email, id: :user_email %>
+    <%= form.email_field :email, id: :user_email, placeholder: "email@xxx.xxx" %>
   </div>
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.text_field :password, id: :user_password %>
+    <%= form.password_field :password, id: :user_password, placeholder: "password here" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit(user.new_record? ? "sign up" : "update account") %>
   </div>
 <% end %>
