@@ -9,6 +9,7 @@
     <tr>
       <th>Title</th>
       <th>Description</th>
+      <th>Author</th>
       <th>Created</th>
       <th>Updated</th>
       <th colspan="3"></th>
@@ -20,6 +21,7 @@
       <tr>
         <td><%= article.title %></td>
         <td><%= article.description %></td>
+        <td><%= article.user.username if article.user %></td>
         <td><%= time_ago_in_words(article.created_at) %></td>
         <td><%= time_ago_in_words(article.updated_at) %></td>
         <td><%= link_to 'Show', article %></td>
