@@ -10,7 +10,16 @@
   <body>
     <%= @root %>
     <%= render 'layouts/navigation' %>
+    <% flash.each do |message_type, message| %>
+      <div id="flash-msg" class="alert alert-<%= message_type %>">
+        <%= message %>
+        <button class="close-btn" onclick="document.getElementById('flash-msg').style.display='none'">
+          <span>&times;</span>
+        </button>
+      </div>
+    <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

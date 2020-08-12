@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @root = "AlphaBlog Articles"
-    @articles = Article.all
+    @articles = Article.paginate(page: params[:page], per_page: 5)
     respond_to do |format|
       format.html { render :index }
       format.json { render :index }

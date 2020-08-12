@@ -19,6 +19,8 @@
 
 <h3>Articles created by <%= @user.username %></h3>
 <%= "created #{pluralize(@user.articles.count, "article")}" %>
-<%= render 'articles/article', articles: @user.articles %>
+
+<%= render 'articles/article', articles: @user.articles.paginate(page: params[:page], per_page: 5) %>
+
 
 <%= link_to 'Back', users_path %>
