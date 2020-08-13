@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @root = "AlphaBlog Articles"
+    @root = "@root at articles#index"
     @articles = Article.paginate(page: params[:page], per_page: 5)
     respond_to do |format|
       format.html { render :index }
@@ -30,7 +30,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-    @article.user = User.first
+    @article.user = current_user
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }

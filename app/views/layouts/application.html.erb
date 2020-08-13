@@ -9,11 +9,12 @@
 
   <body>
     <%= @root %>
+    
     <%= render 'layouts/navigation' %>
-    <% flash.each do |message_type, message| %>
-      <div id="flash-msg" class="alert alert-<%= message_type %>">
-        <%= message %>
-        <button class="close-btn" onclick="document.getElementById('flash-msg').style.display='none'">
+    <% flash.each_with_index do |message, i| %>
+      <div class="flash-msg alert alert-<%= message[0] %>">
+        <%= message[1] %>
+        <button class="close-btn" onclick="document.getElementsByClassName('flash-msg')[<%= i %>].style.display='none'">
           <span>&times;</span>
         </button>
       </div>
