@@ -6,8 +6,11 @@
     <%= link_to 'Users List', users_path %>
   </div>
   <div>
-    <%= link_to "Log in", login_path %>
-    <%= link_to 'Signup', signup_path %>
-    <%= link_to "Log out", logout_path, method: :delete %>
+    <% if logged_in? %>
+      <%= link_to "Log out", logout_path, method: :delete %>
+    <% else %>
+      <%= link_to "Log in", login_path %>
+      <%= link_to 'Signup', signup_path %>
+    <% end %>
   </div>
 </nav>
