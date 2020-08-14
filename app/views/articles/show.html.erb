@@ -1,33 +1,27 @@
 <p id="notice"><%= notice %></p>
-
 <div>
   <div><%= gravatar_for(@article.user) %></div>
   <strong>Author:</strong>
   <% if @article.user %><%= link_to @article.user.username, user_path(@article.user) %><% end %>
 </div>
-
 <p>
   <strong>Title:</strong>
   <%= @article.title %>
 </p>
-
 <p>
   <strong>Description:</strong>
   <%= simple_format(@article.description) %>
 </p>
-
 <p>
   <strong>Created:</strong>
   <%= time_ago_in_words(@article.created_at) %>
 </p>
-
 <p>
   <strong>Updated:</strong>
   <%= time_ago_in_words(@article.updated_at) %>
 </p>
-
 <% if logged_in? && current_user == @article.user %>
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <% end %>
 <%= link_to 'Articles list', articles_path %>
