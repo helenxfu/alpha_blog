@@ -8,7 +8,7 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-<% if logged_in? && current_user == @user %>
+<% if logged_in? && (current_user == @user || current_user.admin?) %>
   <p>
     <strong>Password:</strong>
     <%= link_to 'Edit profile', edit_user_path(@user) %>
