@@ -12,6 +12,12 @@
   <strong>Description:</strong>
   <%= simple_format(@article.description) %>
 </p>
+<% if @article.categories.any? %>
+  <p>
+    <strong>Categories:</strong>
+    <%= render @article.categories %>
+  </p>
+<% end %>
 <p>
   <strong>Created:</strong>
   <%= time_ago_in_words(@article.created_at) %>

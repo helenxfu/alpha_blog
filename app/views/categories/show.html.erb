@@ -4,6 +4,13 @@
   <strong>Title:</strong>
   <%= @category.name %>
 </p>
+<p>
+  <strong>Count:</strong>
+  <%= pluralize(@category.articles.count, "article") %>
+</p>
+
+<%= render "articles/article", articles: @articles %>
+
 <% if logged_in? && current_user.admin? %>
   <%= link_to 'Edit', edit_category_path(@category) %> |
   <%= link_to 'Destroy', @category, method: :delete, data: { confirm: 'Are you sure?' } %> |

@@ -17,6 +17,10 @@
     <%= form.label :description %>
     <%= form.text_area :description, id: :article_description %>
   </div>
+  <div class="field">
+    <%= form.label :category %>
+    <%= form.collection_select(:category_ids, Category.all, :id, :name, { prompt: "Can be Empty or Choose multiple categories"}, {multiple: true, size: 10, class: "custom-select"}) %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

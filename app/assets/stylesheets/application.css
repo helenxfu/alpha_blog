@@ -38,6 +38,13 @@
   transition-duration: 0.3s;
   background-color: none;
 }
+
+.badge {
+  padding: 3px;
+  border-radius: 5px;
+  background-color: rgb(233, 233, 204);
+  margin: 0 2px;
+}
 /* pagination */
 
 .flickr_pagination {
