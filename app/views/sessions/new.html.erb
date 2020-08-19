@@ -9,6 +9,12 @@
     <%= form.label :password %>
     <%= form.password_field :password, id: :user_password, placeholder: "password here" %>
   </div>
+  <div>
+    <%= form.label :remember_me, class: "checkbox inline" do %>
+      <%= form.check_box :remember_me %>
+      <span>Remember me on this computer</span>
+    <% end %>
+  </div>
   <div class="actions">
     <%= form.submit("Log in") %>
   </div>

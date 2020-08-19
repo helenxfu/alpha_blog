@@ -32,6 +32,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
+        remember @user
         format.html { redirect_to @user, notice: "User #{@user.username} was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
@@ -59,7 +60,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
-    session[:user_id] = nil if @user = current_user
+    session[:user_id] = nil if @user == current_user
     respond_to do |format|
       format.html { redirect_to users_url, notice: "User and all associated articles were successfully destroyed." }
       format.json { head :no_content }
