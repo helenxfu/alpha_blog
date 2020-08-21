@@ -31,10 +31,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        session[:user_id] = @user.id
-        remember @user
-        format.html { redirect_to @user, notice: "User #{@user.username} was successfully created." }
-        format.json { render :show, status: :created, location: @user }
+        UserMailer.account_activation(@user).deliver_now
+        flash[:info] = "Please check your mail to activate your account."
+        redirect_to root_path
+        # session[:user_id] = @user.id
+        # remember @user
+        # format.html { redirect_to @user, notice: "User #{@user.username} was successfully created." }
+        # format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }

@@ -1,0 +1,7 @@
+<h1>User#account_activation</h1>
+
+<p>Hello <%= @user.username %>, welcome to Starcloud Alpha Blog!</p>
+
+<p>Click on the link below to activate your account:</p>
+
+<p><%= link_to "Activate Account", edit_account_activation_url(@user.activation_token, email: @user.email) %></p>
