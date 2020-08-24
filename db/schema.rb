@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200820103721) do
+ActiveRecord::Schema.define(version: 20200824071443) do
 
   create_table "article_categories", force: :cascade do |t|
     t.integer "article_id"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 20200820103721) do
     t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
 end

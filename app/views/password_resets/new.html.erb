@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<h1>Reset Password</h1>
+<%= form_with(scope: :password_reset, url: password_resets_path, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email, id: :user_email, placeholder: "email@xxx.xxx" %>
+  </div>
+  <div class="actions">
+    <%= form.submit("Reset") %>
+  </div>
+<% end %>
+
