@@ -5,6 +5,7 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.account_activation.subject
   #
+  # http://localhost:3000/rails/mailers/user_mailer/account_activation
   def account_activation(user)
     @user = user
 
