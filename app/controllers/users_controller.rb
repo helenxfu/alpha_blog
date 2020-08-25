@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:edit, :update]
   before_action :require_same_user, only: [:edit, :update, :destroy]
 
-
   # GET /users
   # GET /users.json
   def index
@@ -13,6 +12,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @microposts = @user.microposts.paginate(page: params[:page], per_page: 40)
   end
 
   # GET /users/new
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       # format.html { redirect_to @user, notice: "User #{@user.username} was successfully created." }
       # format.json { render :show, status: :created, location: @user }
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -68,20 +68,21 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:username, :email, :password)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    def require_same_user
-      if current_user != @user && !current_user.admin?
-        flash[:alert] = "You cannot mess with this user"
-        redirect_to @user
-      end
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:username, :email, :password)
+  end
+
+  def require_same_user
+    if current_user != @user && !current_user.admin?
+      flash[:alert] = "You cannot mess with this user"
+      redirect_to @user
     end
+  end
 end

@@ -20,4 +20,19 @@
 <h3>Articles created by <%= @user.username %></h3>
 <%= "created #{pluralize(@user.articles.count, "article")}" %>
 <%= render 'articles/article', articles: @user.articles.paginate(page: params[:page], per_page: 5) %>
+
+<% if @user.microposts.any? %>
+  <div class="microposts-container">
+    <h2><%= "There are #{pluralize(@user.microposts.count, "posts")}" %></h2>
+    <%= will_paginate @microposts, container: false %>
+    <table>
+      <tr>
+        <th></th>
+        <th>Author</th>
+        <th>Post</th>
+      </tr>
+      <%= render @microposts %>
+    </table>
+  </div>
+<% end %>
 <%= link_to 'Back', users_path %>

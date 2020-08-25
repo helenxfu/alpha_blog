@@ -6,6 +6,7 @@ class User < ApplicationRecord
   before_create :create_activation_digest
 
   has_many :articles, dependent: :destroy
+  has_many :microposts, dependent: :destroy
   validates :username, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 4, maximum: 25 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 105 }, format: { with: VALID_EMAIL_REGEX }
@@ -75,6 +76,6 @@ class User < ApplicationRecord
 
   def create_activation_digest
     self.activation_token = User.new_token
-    self.activation_digest = User.digest(activation_token) # self.update_attribute(:activation_digest, User.digest(activation_token)) # ??? equivalent? why self? 
+    self.activation_digest = User.digest(activation_token) # before_create so don't save
   end
 end
