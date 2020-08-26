@@ -16,8 +16,8 @@
   <tbody>
     <% articles.each do |article| %>
       <tr>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
+        <td class="ellipsis ellipsis-cell"><%= article.title %></td>
+        <td class="ellipsis ellipsis-cell"><%= article.description %></td>
         <td><% if article.user %><%= link_to article.user.username, user_path(article.user) %><% end %></td>
         <td><% if article.categories.any? %>
           <%= render article.categories %>

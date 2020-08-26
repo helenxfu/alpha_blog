@@ -34,9 +34,9 @@ users = User.order(:created_at).take(4)
 # create seed articles
 users.each do |user|
   15.times do
-    title = Faker::Lorem.characters(number: 30)
-    description = Faker::Lorem.paragraph(sentence_count: 2)[0..299]
-    category_ids = (1..15).to_a.sample(rand(5))
+    title = Faker::Lorem.characters(number: rand(3..100)) # min: 3 max: 100 length
+    description = Faker::Lorem.paragraph(sentence_count: rand(1..4))[0..299] # randomly 1~4 sentences, up to length of 300
+    category_ids = (1..15).to_a.sample(rand(5)) # up to 4 categories
     user.articles.create!(title: title, description: description, category_ids: category_ids)
   end
 end
@@ -44,7 +44,7 @@ end
 # create seed microposts
 users.each do |user|
   50.times do
-    content = Faker::Lorem.sentence(word_count: 5)
+    content = Faker::Lorem.sentence(word_count: rand(1..5))
     user.microposts.create!(content: content)
   end
 end
