@@ -2,13 +2,12 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :require_admin, except: [:index, :show]
 
-  
   def index
-    @categories = Category.paginate(page: params[:page], per_page: 5)
+    @categories = Category.paginate(page: params[:page], per_page: 20)
   end
-  
+
   def show
-    @articles = @category.articles.paginate(page: params[:page], per_page: 5)
+    @articles = @category.articles.paginate(page: params[:page], per_page: 20)
   end
 
   def new
@@ -20,13 +19,13 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-      if @category.save
-        flash[:notice] = "Category created successfully"
-        redirect_to @category
-      else
-        flash[:alert] = "something wrong"
-        render "new"
-      end
+    if @category.save
+      flash[:notice] = "Category created successfully"
+      redirect_to @category
+    else
+      flash[:alert] = "something wrong"
+      render "new"
+    end
   end
 
   def update

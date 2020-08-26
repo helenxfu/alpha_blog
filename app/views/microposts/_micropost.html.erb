@@ -3,4 +3,7 @@
   <td><%= link_to micropost.user.username, micropost.user %></td>
   <td><%= micropost.content %></td>
   <td><%= time_ago_in_words(micropost.created_at) %></td>
+  <% if logged_in? && (micropost.user == current_user || current_user.admin? ) %>
+    <td><%= link_to 'Destroy', micropost, method: :delete, data: { confirm: "Delete micropost?" } %></td>
+  <% end %>
 </tr>

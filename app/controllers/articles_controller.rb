@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @root = "@root at articles#index"
-    @articles = Article.paginate(page: params[:page], per_page: 5)
+    @articles = Article.paginate(page: params[:page], per_page: 20)
     respond_to do |format|
       format.html { render :index }
       format.json { render :index }
@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
     @article.user = current_user
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.html { redirect_to @article, notice: "Article was successfully created." }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.html { redirect_to @article, notice: "Article was successfully updated." }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -63,26 +63,27 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+      format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def article_params
-      params.require(:article).permit(:title, :description, category_ids: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
-    def require_same_user
-      if current_user != @article.user && !current_user.admin?
-        flash[:alert] = "This article is not yours."
-        redirect_to @article
-      end
+  # Only allow a list of trusted parameters through.
+  def article_params
+    params.require(:article).permit(:title, :description, category_ids: [])
+  end
+
+  def require_same_user
+    if current_user != @article.user && !current_user.admin?
+      flash[:alert] = "This article is not yours."
+      redirect_to @article
     end
+  end
 end
