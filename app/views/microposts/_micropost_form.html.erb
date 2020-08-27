@@ -1,0 +1,9 @@
+<%= form_for(@micropost) do |form| %>
+  <%= render "layouts/error_messages", obj: form.object %>
+  <div class="field">
+    <%= form.text_area :content, placeholder: "new micropost text"%>
+  </div>
+  <div class="actions">
+    <%= form.submit "Post"%>
+  </div>
+<% end %>

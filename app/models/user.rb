@@ -2,7 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
 
   before_save { self.email = email.downcase }
-  
+
   before_create :create_activation_digest
 
   has_many :articles, dependent: :destroy
@@ -37,13 +37,13 @@ class User < ApplicationRecord
 
   # Returns true if the given token matches the digest.
   # def authenticated?(remember_token)
-    # digest = self.send("remember_digest")
-    # return false if digest.nil?
+  # digest = self.send("remember_digest")
+  # return false if digest.nil?
   #   BCrypt::Password.new(remember_digest).is_password?(remember_token)
   # end
 
   def authenticated?(attribute, token)
-    digest = self.send("#{attribute}_digest") 
+    digest = self.send("#{attribute}_digest")
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
   end
@@ -72,10 +72,15 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
-  private 
+  # ? ensures that id is properly escaped before being included in the underlying SQL query, thereby avoiding a serious security hole called SQL injection.
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+
+  private
 
   def create_activation_digest
     self.activation_token = User.new_token
-    self.activation_digest = User.digest(activation_token) # before_create so don't save
+    self.activation_digest = User.digest(activation_token) # before_create so does not save into database
   end
 end

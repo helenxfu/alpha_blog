@@ -21,6 +21,10 @@
 <%= "created #{pluralize(@user.articles.count, "article")}" %>
 <%= render 'articles/article', articles: @user.articles.paginate(page: params[:page], per_page: 14) %>
 
+<% if logged_in? && (current_user == @user) %>
+  <%= render "microposts/micropost_form" %>
+<% end %>
+
 <% if @user.microposts.any? %>
   <div class="microposts-container">
     <h2><%= "There are #{pluralize(@user.microposts.count, "posts")}" %></h2>

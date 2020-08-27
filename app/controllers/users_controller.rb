@@ -13,6 +13,9 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @microposts = @user.microposts.paginate(page: params[:page], per_page: 20)
+    if logged_in? && current_user == @user
+      @micropost = current_user.microposts.new
+    end
   end
 
   # GET /users/new

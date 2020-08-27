@@ -7,17 +7,18 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.new(micropost_params)
     if @micropost.save
       flash[:success] = "Micropost created!"
-      redirect_to request.referrer || root_url
+      redirect_back(fallback_location: root_url)
     else
       flash[:danger] = "Micropost create failed"
-      redirect_to root_url
+      redirect_back(fallback_location: root_url)
     end
   end
 
   def destroy
     @micropost.destroy
     flash[:success] = "Micropost deleted"
-    redirect_to request.referrer || root_url # related to the request.original_url variable used in friendly forwarding, is just the previous URL
+    redirect_back(fallback_location: root_url)
+    # redirect_to request.referrer || root_url # related to the request.original_url variable used in friendly forwarding, is just the previous URL
   end
 
   private
@@ -32,9 +33,9 @@ class MicropostsController < ApplicationController
   end
 
   def require_permitted_user
-    if current_user != @micropost.user && !current_user.admin?
+    if !current_user && !current_user.admin?
       flash[:alert] = "You are not permitted to make changes"
-      render @micropost.user
+      redirect_back(fallback_location: root_url)
     end
   end
 end

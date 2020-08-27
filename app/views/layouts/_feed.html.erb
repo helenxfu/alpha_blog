@@ -1,0 +1,14 @@
+<% if @feed_items.any? %>
+    <div class="microposts-container">
+    <h2><%= "There are #{pluralize(@feed_items.count, "posts")}" %></h2>
+    <%= will_paginate @feed_items, container: false %>
+    <table>
+      <tr>
+        <th></th>
+        <th>Author</th>
+        <th>Post</th>
+      </tr>
+      <%= render @feed_items %>
+    </table>
+  </div>
+<% end %>

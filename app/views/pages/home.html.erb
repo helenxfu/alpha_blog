@@ -1,5 +1,9 @@
 <% provide(:title, "Home") %>
 Home
 <h1>Rails Tutorial: Alpha Blog</h1>
+<% if logged_in? %>
+  <%= render "microposts/micropost_form" %>
+  <%= render 'layouts/feed' %>
+<% end %>
 <%= link_to 'Articles List', articles_path %>
 <%= link_to 'About', about_path %>
