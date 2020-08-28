@@ -9,7 +9,7 @@ class MicropostsController < ApplicationController
       flash[:success] = "Micropost created!"
       redirect_back(fallback_location: root_url)
     else
-      flash[:danger] = "Micropost create failed"
+      flash[:danger] = "Micropost create failed: #{@micropost.errors.full_messages}"
       redirect_back(fallback_location: root_url)
     end
   end
