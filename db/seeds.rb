@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Faker::UniqueGenerator.clear # Clears used values for all generators
+# use between tests
+# Faker::UniqueGenerator.clear # Clears used values for all generators
 
 # create admin
 User.create!(username: "Admin User",
@@ -17,7 +18,7 @@ User.create!(username: "Admin User",
              activated_at: Time.zone.now)
 
 # create seed users
-20.times do |n|
+30.times do |n|
   username = Faker::Name.unique.name[0..24]
   email = Faker::Internet.unique.email
   password = "password"
@@ -48,3 +49,16 @@ users.each do |user|
     user.microposts.create!(content: content)
   end
 end
+
+# all_users = User.all
+
+# all_users.each do |user|
+#   user.follow(followed)
+# end
+
+# users = User.all
+# user = users.first
+# following = users[2..30]
+# followers = users[3..30]
+# following.each { |followed| user.follow(followed) }
+# followers.each { |follower| follower.follow(user) }
