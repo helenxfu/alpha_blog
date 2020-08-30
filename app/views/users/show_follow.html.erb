@@ -5,9 +5,13 @@
   <table>
   <tr>
     <th>Username</th>
+    <th>Status</th>
   </tr>
   <% @users.each do |user| %>
-    <tr><td><%= link_to user.username, user %></td></tr>
+    <tr>
+      <td><%= link_to user.username, user %></td>
+      <td><%= render "users/follow_form", user: user %></td>
+    </tr>
   <% end %>
   </table>
 <% end %>

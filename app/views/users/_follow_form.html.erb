@@ -1,0 +1,7 @@
+<% if logged_in? && (current_user != user) %>
+  <% if current_user.following?(user) %>
+    Unfollow
+  <% else %>
+    Follow
+  <% end %>
+<% end %>

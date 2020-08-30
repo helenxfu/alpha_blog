@@ -1,8 +1,5 @@
 <p id="notice"><%= notice %></p>
 <%= render "show_user_info" %>
-<% if logged_in? && (current_user != @user) %>
-  Follow
-<% end %>
 
 <% if logged_in? && (current_user == @user || current_user.admin?) %>
   <p>

@@ -12,7 +12,7 @@
       <th>Joined</th>
       <th>Following</th>
       <th>Followers</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
   <tbody>
@@ -25,6 +25,7 @@
         <td><%= link_to user.following.count, following_user_path(user) %></td>
         <td><%= link_to user.followers.count, followers_user_path(user) %></td>
         <td><%= link_to 'Show', user %></td>
+        <td><%= render "users/follow_form", user: user %></td>
         <% if logged_in? && (current_user == user || current_user.admin?) %>
           <td><%= link_to 'Edit', edit_user_path(user) %></td>
           <td><%= link_to 'Delete Account', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
