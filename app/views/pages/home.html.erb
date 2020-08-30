@@ -2,6 +2,7 @@
 Home
 <h1>Rails Tutorial: Alpha Blog</h1>
 <% if logged_in? %>
+  <%= render "users/show_user_info" %>
   <%= render "microposts/micropost_form" %>
   <%= render 'layouts/feed' %>
 <% end %>

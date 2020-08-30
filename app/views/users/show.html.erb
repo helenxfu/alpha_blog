@@ -1,13 +1,9 @@
 <p id="notice"><%= notice %></p>
-<%= gravatar_for @user, size: 100 %>
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<%= render "show_user_info" %>
+<% if logged_in? && (current_user != @user) %>
+  Follow
+<% end %>
+
 <% if logged_in? && (current_user == @user || current_user.admin?) %>
   <p>
     <strong>Password:</strong>
@@ -17,6 +13,7 @@
     <%= link_to 'Delete Account', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "alert" %>
   </p>
 <% end %>
+
 <h3>Articles created by <%= @user.username %></h3>
 <%= "created #{pluralize(@user.articles.count, "article")}" %>
 <%= render 'articles/article', articles: @user.articles.paginate(page: params[:page], per_page: 14) %>

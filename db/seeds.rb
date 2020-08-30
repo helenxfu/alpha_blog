@@ -50,15 +50,10 @@ users.each do |user|
   end
 end
 
-# all_users = User.all
+all_users = User.all
 
-# all_users.each do |user|
-#   user.follow(followed)
-# end
-
-# users = User.all
-# user = users.first
-# following = users[2..30]
-# followers = users[3..30]
-# following.each { |followed| user.follow(followed) }
-# followers.each { |follower| follower.follow(user) }
+all_users.each_with_index do |user, i|
+  is_following = (1..31).to_a.sample(rand(31))
+  is_following.delete(i + 1) # delete self if included in the array
+  is_following.each { |id| user.follow(User.find(id)) }
+end

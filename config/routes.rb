@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   get "about", to: "pages#about"
   resources :articles
   resources :microposts, only: [:create, :destroy]
-  resources :users, except: [:new]
+  resources :users, except: [:new] do
+    member do
+      get :following, :followers
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   get "signup", to: "users#new"

@@ -1,0 +1,13 @@
+<% provide(:title, @title) %>
+<h3><%= @title %></h3>
+<%= render "show_user_info" %>
+<% if @users.any? %>
+  <table>
+  <tr>
+    <th>Username</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr><td><%= link_to user.username, user %></td></tr>
+  <% end %>
+  </table>
+<% end %>

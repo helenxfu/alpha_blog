@@ -1,0 +1,13 @@
+<% @user ||= current_user %>
+<%= gravatar_for @user, size: 100 %>
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<%= link_to "#{pluralize(@user.following.count, "following") }", following_user_path(@user) %>
+<%= link_to "#{pluralize(@user.followers.count, "followers") }", followers_user_path(@user) %>
