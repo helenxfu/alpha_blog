@@ -100,3 +100,20 @@
 .flickr_pagination .next_page {
   margin-left: 1em;
 }
+
+/* relationships */
+.relationship-btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+.follow {
+  background-color: rgb(230, 230, 193);
+  color: rgb(73, 50, 50);
+}
+
+.unfollow {
+  background-color: rgb(207, 174, 207);
+  color: rgb(71, 0, 71);
+}

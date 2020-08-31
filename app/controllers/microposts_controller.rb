@@ -10,6 +10,7 @@ class MicropostsController < ApplicationController
       redirect_back(fallback_location: root_url)
     else
       flash[:danger] = "Micropost create failed: #{@micropost.errors.full_messages}"
+      @feed_items = current_user.feed.paginate(page: params[:page])
       redirect_back(fallback_location: root_url)
     end
   end

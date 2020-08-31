@@ -22,8 +22,8 @@
         <td><%= user.email %></td>
         <td><%= user.articles.count %></td>
         <td><%= time_ago_in_words(user.created_at) %> ago</td>
-        <td><%= link_to user.following.count, following_user_path(user) %></td>
-        <td><%= link_to user.followers.count, followers_user_path(user) %></td>
+        <td id="following-<%= user.id%>"><%= link_to user.following.count, following_user_path(user) %></td>
+        <td id="followers-<%= user.id%>"><%= link_to user.followers.count, followers_user_path(user) %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= render "users/follow_form", user: user %></td>
         <% if logged_in? && (current_user == user || current_user.admin?) %>

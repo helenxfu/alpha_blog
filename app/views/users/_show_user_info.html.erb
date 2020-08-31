@@ -9,6 +9,6 @@
   <%= @user.email %>
 </p>
 
-<%= link_to "#{pluralize(@user.following.count, "following") }", following_user_path(@user) %>
-<%= link_to "#{pluralize(@user.followers.count, "followers") }", followers_user_path(@user) %>
+<span id="following-<%= @user.id%>"><%= link_to "#{pluralize(@user.following.count, "following") }", following_user_path(@user) %></span>
+<span id="followers-<%= @user.id%>"><%= link_to "#{pluralize(@user.followers.count, "followers") }", followers_user_path(@user) %></span>
 <%= render "users/follow_form", user: @user %>
